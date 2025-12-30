@@ -1,0 +1,10 @@
+services:
+  steam-recommender:
+    image: lquincarter/steam-game-recommender:latest
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    container_name: steam-game-recommender
+    environment:
+      - STEAM_API_KEY=${STEAM_API_KEY}
+      - STEAM_ID=${STEAM_ID}
