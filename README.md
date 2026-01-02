@@ -44,39 +44,10 @@ services:
     image: lquincarter/steam-game-recommender:latest
     ports:
       - "3000:80"
-    environment:
-      - STEAM_API_KEY=your_steam_api_key_here
-      - STEAM_ID=your_steam_id_here
+      - "3001:3001" # backend api
     restart: unless-stopped
-```
-
-Then run:
-
-```bash
-docker compose up -d
-```
-
-**Using .env file (recommended):**
-
-Create a `.env` file:
-
-```env
-STEAM_API_KEY=your_steam_api_key_here
-STEAM_ID=your_steam_id_here
-```
-
-Create a `docker compose.yml` file:
-
-```yaml
-services:
-  steam-recommender:
-    image: lquincarter/steam-game-recommender:latest
-    ports:
-      - "3000:80"
-    environment:
-      - STEAM_API_KEY=${STEAM_API_KEY}
-      - STEAM_ID=${STEAM_ID}
-    restart: unless-stopped
+    volumes:
+      - ./data:/data
 ```
 
 Then run:
@@ -97,13 +68,6 @@ http://localhost:3000
 
 - `latest` - Latest stable release
 - `v1.0.0` - Specific version tags
-
-## Environment Variables
-
-| Variable        | Required | Description                                                       |
-| --------------- | -------- | ----------------------------------------------------------------- |
-| `STEAM_API_KEY` | Yes      | Your Steam Web API key from https://steamcommunity.com/dev/apikey |
-| `STEAM_ID`      | Yes      | Your Steam ID (64-bit format)                                     |
 
 ## Common Commands
 
